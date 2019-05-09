@@ -26,8 +26,8 @@ class User(Base):
             'ZipCode': self.user_zipcode
         }
 
-    def post(self):
-        pass
+    def post(self, session):
+        session.add(self)
 
-    def delete(self, user_name):
-        pass
+    def delete(self, session):
+        session.delete(self)
