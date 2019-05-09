@@ -18,6 +18,7 @@ logger.addHandler(f_handler)
 # configure flask
 app = Flask(__name__)
 app.register_blueprint(api, url_prefix='/uman')
+
 # configure database
 Base.metadata.create_all(Engine)
 session = Session()
