@@ -18,7 +18,7 @@ class User(Base):
     user_birthday = Column(Date)
     user_zipcode = Column(Integer)
 
-    def get(self, user_name):
+    def get(self):
         return {
             'Name': self.user_name,
             'Email': self.user_email,
