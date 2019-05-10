@@ -1,9 +1,14 @@
 import React from 'react';
+import axios from 'axios';
 import { Grid, Header, Divider, Button, Form } from 'semantic-ui-react';
 
 class DataTableRibbon extends React.Component {
   state = {
-    showAdd: false
+    showAdd: false,
+    user_name: '',
+    user_email: '',
+    user_birthday: '',
+    user_zipcode: ''
   }
 
   handleShowAdd = () => {
@@ -11,15 +16,34 @@ class DataTableRibbon extends React.Component {
     this.setState({ showAdd: toggle });
   }
 
+  handleAddUser = () => {
+    const payload = {
+      user_name: this.state.user_name,
+      user_email: this.state.user_email,
+      user_birthday: this.state.user_birthday,
+      user_zipcode: this.state.user_zipcode,
+    }
+
+    axios.post('/uman/add-user', payload)
+      .then(res => {
+        window.location.reload();
+    })
+  }
+
+  handleChange = (event, { value }) => {
+    const key = event.target.id;
+    this.setState({ [key]: value });
+  }
+
   render() {
     const inputForm = this.state.showAdd ? (
       <div>
         <Form>
           <Form.Group inline>
-            <Form.Input label='Name' placeholder='Name' />
-            <Form.Input label='Email' placeholder='Email' />
-            <Form.Input label='Birthday' placeholder='Birthday' />
-            <Form.Input label='Zipcode' placeholder='Zipcode' />
+            <Form.Input id='user_name' label='Name' placeholder='Name' onChange={this.handleChange}/>
+            <Form.Input id='user_email' label='Email' placeholder='Email' onChange={this.handleChange}/>
+            <Form.Input id='user_birthday' label='Birthday' placeholder='Birthday' onChange={this.handleChange}/>
+            <Form.Input id='user_zipcode' label='Zipcode' placeholder='Zipcode' onChange={this.handleChange}/>
             <Button positive onClick={this.handleAddUser}> Add </Button>
           </Form.Group>
         </Form>
