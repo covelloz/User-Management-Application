@@ -42,7 +42,6 @@ class DataTable extends React.Component {
 
   render() {
     const { column, data, direction } = this.state
-    console.log(this.state);
 
     return (
       <Container>
