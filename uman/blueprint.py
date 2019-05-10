@@ -27,11 +27,11 @@ def add_user():
             user_api = UserAPI()
             response = user_api.post(new_user)
             return jsonify(response)
-        except KeyError:
-            return {
+        except (KeyError, ValueError):
+            return jsonify({
                 'Content': {},
                 'Message': 'Bad Payload'
-            }
+            })
     else:
         abort(400)
 
