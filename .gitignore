@@ -2,3 +2,25 @@
 .vscode/*
 *.pyc
 *.log
+
+# dependencies
+uman_app/node_modules
+uman_app/.pnp
+uman_app/.pnp.js
+
+# testing
+uman_app/coverage
+
+# production
+uman_app/build
+
+# misc
+uman_app/.DS_Store
+uman_app/.env.local
+uman_app/.env.development.local
+uman_app/.env.test.local
+uman_app/.env.production.local
+
+uman_app/npm-debug.log*
+uman_app/yarn-debug.log*
+uman_app/yarn-error.log*
