@@ -24,6 +24,11 @@ class User(Base):
 
 class UserAPI(object):
     """ API """
+    def get_all(self):
+        all_users = session.query(User).all()
+        response = [self._serialize(user) for user in all_users]
+        return response
+
     def get(self, user_id):
         user = session.query(User).filter_by(
             user_id=user_id).first()
@@ -81,6 +86,6 @@ class UserAPI(object):
             'Id': user.user_id,
             'Name': user.user_name,
             'Email': user.user_email,
-            'Birthday': user.user_birthday,
-            'ZipCode': user.user_zipcode
+            'Birthday': user.user_birthday.strftime('%m/%d/%Y'),
+            'Zipcode': user.user_zipcode
         }

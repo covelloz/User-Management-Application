@@ -44,3 +44,10 @@ def delete_user(user_id):
         return jsonify(response)
     else:
         abort(400)
+
+
+@users.route('/all-users', methods=['GET'])
+def get_all_userse():
+    user_api = UserAPI()
+    response = user_api.get_all()
+    return jsonify(response)
