@@ -1,8 +1,8 @@
 import logging
 from flask import Flask
 from uman.config import config
-from uman.blueprint import api
-from uman.models import Base, Engine, Session
+from uman.blueprint import users
+from uman.models import Base, Engine
 
 __version__ = '0.1'
 __author__ = 'Michael Covello'
@@ -17,11 +17,10 @@ logger.addHandler(f_handler)
 
 # configure flask
 app = Flask(__name__)
-app.register_blueprint(api, url_prefix='/uman')
+app.register_blueprint(users, url_prefix='/uman')
 
-# configure database
+# create database
 Base.metadata.create_all(Engine)
-session = Session()
 
 
 def run_app(config):
