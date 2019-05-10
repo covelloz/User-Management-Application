@@ -36,9 +36,9 @@ def add_user():
         abort(400)
 
 
-@users.route('/delete-user/<int:user_id>', methods=['GET', 'POST'])
+@users.route('/delete-user/<int:user_id>', methods=['GET', 'DELETE'])
 def delete_user(user_id):
-    if request.method == 'POST':
+    if request.method == 'DELETE':
         user_api = UserAPI()
         response = user_api.delete(user_id)
         return jsonify(response)
