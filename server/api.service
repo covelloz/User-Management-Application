@@ -7,7 +7,7 @@ User=root
 Group=root
 WorkingDirectory=/vagrant
 Environment="PATH=/opt/conda/envs/uman_app/bin"
-ExecStart=/opt/conda/envs/uman_app/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 main:app
+ExecStart=/opt/conda/envs/uman_app/bin/gunicorn --bind 127.0.0.1:5000 main:app
 
 [Install]
 WantedBy=multi-user.target
