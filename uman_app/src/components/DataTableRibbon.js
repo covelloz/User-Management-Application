@@ -5,6 +5,7 @@ import { Grid, Header, Divider, Button, Form } from 'semantic-ui-react';
 class DataTableRibbon extends React.Component {
   state = {
     showAdd: false,
+    showDelete: false,
     user_name: '',
     user_email: '',
     user_birthday: '',
@@ -14,6 +15,11 @@ class DataTableRibbon extends React.Component {
   handleShowAdd = () => {
     const toggle = !this.state.showAdd;
     this.setState({ showAdd: toggle });
+  }
+
+  handleShowDelete = () => {
+    const toggle = !this.state.showDelete;
+    this.setState({ showDelete: toggle });
   }
 
   handleAddUser = () => {
@@ -30,13 +36,21 @@ class DataTableRibbon extends React.Component {
     })
   }
 
+  handleDeleteUser = () => {
+    const user_id = this.state.user_id
+    axios.delete(`/uman/delete-user/${user_id}`)
+      .then(res => {
+        window.location.reload();
+    })
+  }
+
   handleChange = (event, { value }) => {
     const key = event.target.id;
     this.setState({ [key]: value });
   }
 
   render() {
-    const inputForm = this.state.showAdd ? (
+    const inputFormAdd = this.state.showAdd ? (
       <div>
         <Form>
           <Form.Group inline>
@@ -45,6 +59,17 @@ class DataTableRibbon extends React.Component {
             <Form.Input id='user_birthday' label='Birthday' placeholder='Birthday' onChange={this.handleChange}/>
             <Form.Input id='user_zipcode' label='Zipcode' placeholder='Zipcode' onChange={this.handleChange}/>
             <Button positive onClick={this.handleAddUser}> Add </Button>
+          </Form.Group>
+        </Form>
+      </div>
+    ) : null;
+
+    const inputFormDelete = this.state.showDelete ? (
+      <div>
+        <Form>
+          <Form.Group inline>
+            <Form.Input id='user_id' label='Id' placeholder='Id' onChange={this.handleChange}/>
+            <Button negative onClick={this.handleDeleteUser}> Delete </Button>
           </Form.Group>
         </Form>
       </div>
@@ -59,12 +84,13 @@ class DataTableRibbon extends React.Component {
           <Grid.Column width={4}>
             <div>    
               <Button positive onClick={this.handleShowAdd}> Add User </Button>
-              <Button negative onClick={this.handleDeleteuser}> Delete User </Button> 
+              <Button negative onClick={this.handleShowDelete}> Delete User </Button> 
             </div>
           </Grid.Column>
         </Grid>
         <Divider/>
-        {inputForm}
+        {inputFormAdd}
+        {inputFormDelete}
       </div>
     );
   }
