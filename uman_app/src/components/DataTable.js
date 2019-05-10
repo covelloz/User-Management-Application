@@ -1,22 +1,23 @@
 import _ from 'lodash'
+import axios from 'axios';
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Container, Table } from 'semantic-ui-react';
 import DataTableRibbon from './DataTableRibbon'
 
 
-const tableData = [
-  { Id: 1, Name: 'John', Email: 'John@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 },
-  { Id: 2, Name: 'Amber', Email: 'Amber@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 },
-  { Id: 3, Name: 'Leslie', Email: 'Leslie@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 },
-  { Id: 4, Name: 'Ben', Email: 'Ben@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 }
-]
+// const tableData = [
+//   { Id: 1, Name: 'John', Email: 'John@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 },
+//   { Id: 2, Name: 'Amber', Email: 'Amber@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 },
+//   { Id: 3, Name: 'Leslie', Email: 'Leslie@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 },
+//   { Id: 4, Name: 'Ben', Email: 'Ben@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 }
+// ]
 
 
 class DataTable extends React.Component {
   state = {
     column: null,
-    data: tableData,
+    data: [],
     direction: null,
   }
 
@@ -39,8 +40,17 @@ class DataTable extends React.Component {
     })
   }
 
+  componentDidMount() {
+    axios.get('/uman/all-users')
+      .then(res => {
+        const tableData = res.data;
+        this.setState({ data: tableData });
+      })
+  }
+
   render() {
     const { column, data, direction } = this.state
+    console.log(this.state);
 
     return (
       <Container>
