@@ -6,14 +6,6 @@ import { Container, Table } from 'semantic-ui-react';
 import DataTableRibbon from './DataTableRibbon'
 
 
-// const tableData = [
-//   { Id: 1, Name: 'John', Email: 'John@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 },
-//   { Id: 2, Name: 'Amber', Email: 'Amber@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 },
-//   { Id: 3, Name: 'Leslie', Email: 'Leslie@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 },
-//   { Id: 4, Name: 'Ben', Email: 'Ben@dmail.com', Birthday: '03/20/1989', Zipcode: 90293 }
-// ]
-
-
 class DataTable extends React.Component {
   state = {
     column: null,
