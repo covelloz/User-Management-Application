@@ -34,7 +34,7 @@ def add_user():
                 user_email=content['user_email'],
                 user_birthday=datetime.strptime(
                     content['user_birthday'], '%m/%d/%Y'),
-                user_zipcode=content['user_zipcode'],
+                user_zipcode=int(content['user_zipcode']),
             )
             user_api = UserAPI()
             response = user_api.post(new_user)
