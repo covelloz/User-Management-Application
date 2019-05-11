@@ -77,7 +77,7 @@ class UserAPI(object):
         else:
             response = {
                 'Content': {},
-                'Message': 'No record for {} exists'.format(user_id)
+                'Message': 'No record for user_id={} exists'.format(user_id)
             }
             return response
 
