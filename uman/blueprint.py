@@ -1,14 +1,26 @@
 from datetime import datetime
-from flask import Blueprint, jsonify, request, abort
+from flask import Blueprint, jsonify, request, abort, render_template
 from uman.models import User, UserAPI
 
 users = Blueprint('users', __name__)
+
+
+@users.route('/')
+def home():
+    return render_template('index.html')
 
 
 @users.route('/user/<int:user_id>', methods=['GET'])
 def get_user(user_id):
     user_api = UserAPI()
     response = user_api.get(user_id)
+    return jsonify(response)
+
+
+@users.route('/all-users', methods=['GET'])
+def get_all_userse():
+    user_api = UserAPI()
+    response = user_api.get_all()
     return jsonify(response)
 
 
@@ -44,10 +56,3 @@ def delete_user(user_id):
         return jsonify(response)
     else:
         abort(400)
-
-
-@users.route('/all-users', methods=['GET'])
-def get_all_userse():
-    user_api = UserAPI()
-    response = user_api.get_all()
-    return jsonify(response)
