@@ -17,8 +17,13 @@ $ vagrant up
 ```
 The application should be hosted with all system and application requirements automatically configured at http://localhost:8080/uman
 
-
 \* In order to use virtualization, you may need enable virtualization in your system's BIOS depending on your hardware (Intel VT / AMD-V). Many vendors disable this setting by default. Moreover, if you have Hyper-V enabled for Windows you might need to disable it. You can read more here: https://www.vagrantup.com/docs/installation/
+
+I already included a compiled production build of the front-end for convenience.
+If you want an interactive, developer instance of the UI just change directory into *uman_app* subfolder and start a local npm server. The package.json is already configured to proxy http://localhost:8080/.
+```
+npm start
+```
 
 When you are ready to tear down the application
 ```
