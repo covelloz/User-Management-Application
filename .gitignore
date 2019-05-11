@@ -12,7 +12,7 @@ uman_app/.pnp.js
 uman_app/coverage
 
 # production
-uman_app/build
+# uman_app/build
 
 # misc
 uman_app/.DS_Store
