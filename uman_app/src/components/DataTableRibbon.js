@@ -32,7 +32,12 @@ class DataTableRibbon extends React.Component {
 
     axios.post('/uman/add-user', payload)
       .then(res => {
-        window.location.reload();
+        if (res.data['Message'] === 'Record successfully added') {
+          window.location.reload();
+        }
+        else {
+          alert(res.data['Message']);
+        }
     })
   }
 
@@ -40,7 +45,12 @@ class DataTableRibbon extends React.Component {
     const user_id = this.state.user_id
     axios.delete(`/uman/delete-user/${user_id}`)
       .then(res => {
-        window.location.reload();
+        if (res.data['Message'] === 'Record successfully deleted') {
+          window.location.reload();
+        }
+        else {
+          alert(res.data['Message']);
+        }
     })
   }
 
